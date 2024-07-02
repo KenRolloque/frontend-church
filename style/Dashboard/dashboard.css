@@ -1,0 +1,17 @@
+main{
+    display: flex;
+    gap: 2em;
+    width: 100%;
+}
+
+#drawerContainer{
+    display: flex;
+    width: 270px;
+}
+
+#myDrawer{
+
+}
+#contentContainer{
+    width: 80%;
+}

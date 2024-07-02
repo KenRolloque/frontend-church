@@ -1,0 +1,42 @@
+:root {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  --purple: #3F51B5;
+  --blue1:#006CC6;
+  --blue2:#0080C5;
+  --blue3:#0091B5;
+  --green1:#009E9D;
+  --green2:#05A985;
+  --gray: #363636;
+  --gray2:#727272;
+  --gray5:#f1f1f1;
+
+
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: Inter-Bold;
+  src: url('./assets/fonts/static/Inter-Bold.ttf');
+}
+
+@font-face {
+  font-family: Inter-Medium;
+  src: url('./assets/fonts/static/Inter-Medium.ttf');
+}
+
+@font-face {
+  font-family: Inter-SemiBold;
+  src: url('./assets/fonts/static/Inter-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Inter-Regular;
+  src: url('./assets/fonts/static/Inter-Regular.ttf');
+}
+
+

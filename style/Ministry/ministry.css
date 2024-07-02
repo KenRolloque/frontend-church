@@ -1,0 +1,85 @@
+main{
+    display: flex;
+    gap: 2em;
+    width: 100%;
+}
+
+#drawerContainer{
+    display: flex;
+    position: fixed;
+    z-index: 50;
+    width: 270px;
+}
+
+#contentContainer{
+    margin-left: 270px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2em;
+}
+
+
+/* General Filter */
+#generalFilter{
+    display: flex;
+    width: 100%;
+    margin-top: 3em;
+   
+}
+
+#generalFilter > ul{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1em;
+    font-family: Inter-SemiBold;
+    color: var(--gray);
+    font-size: 13px;
+}
+
+#generalFilter > ul > li{
+
+    width: 10%;
+    text-align: center;
+    padding: .4em 0;
+    border-radius: 3px;
+}
+
+.activeGeneralFilter{
+    background-color:var(--purple);
+    color: white;
+}
+.notActiveFilter{
+    background-color:var(--gray5);
+}
+
+/* Content */
+
+#summary{
+    display: flex;
+    flex-direction: column;
+}
+
+#statisticsTitle{
+    margin: 2em 0;
+    font-family: Inter-SemiBold;
+    font-size: 18;
+  
+    display: flex;
+    align-items:center;
+    gap: 1em;
+    width: 100%;
+    background-color: var(--gray5);
+    color: var(--gray);
+
+    padding: .5em;
+}
+
+/* Graph */
+
+#donutContainer{
+
+    width: 100%;
+    
+}   
