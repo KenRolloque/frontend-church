@@ -18,21 +18,19 @@ main{
     display: flex;
     flex-direction: column;
     padding: 0 2em;
-   
-   
 }
-
 
 /* General Filter */
 #generalFilter{
     display: flex;
     width: 100%;
     margin-top: 1em;
-    padding: 1em 1em;
+    /* padding: 1em 1em; */
     border-radius: 5px;
     background-color: white;
    
 }
+
 #generalFilter > :first-child{
     display: flex;
     align-items: center;
@@ -68,50 +66,38 @@ main{
     background-color:var(--gray5);
 }
 
-/* Content */
 
-#summary{
+/* Summary Container */
+#summaryContainer{
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    /* border-radius: 5px;
-    background-color: white; */
+    border-radius: 5px;
+    background-color: white; 
     margin-top: 1em;
 
 }
 
+/* Table Container */
 
-
-/* Graph */
-#graphContainer{
+#classesTableContainer{
     width: 100%;
     display: flex;
-    justify-content: center;
-  
-
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: white; 
+    margin-top: 1em;
 }
 
-#donutContainer{
-
+#dataContainer{
     width: 100%;
-    
-}   
-
-#graphTitle{
-    margin-left: 1em;
-}
-
-/* Table */
-#tableContainer{
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     background-color: white;
     margin-top: 1em;
-    padding: 1em 2em;
+    padding: 0 1em 1em 0;
     margin-bottom: 1em;
-    
-   
 }

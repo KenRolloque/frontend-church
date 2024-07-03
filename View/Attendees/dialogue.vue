@@ -1,13 +1,37 @@
 <template>
     <Toast position="top-center" />
     <ConfirmDialog></ConfirmDialog>
-    <Button size="small" icon="pi pi-trash" severity="danger" text rounded @click="confirm2()" />
-
+    <Button @click="confirm2()" :disabled="myMessage == 'yes'" id="delBttn" severity="secondary" icon="pi pi-trash"
+        label="Delete" text aria-label="Filter" />
 </template>
 
+<style scoped>
+#delBttn {
+    font-size: 11px;
+    margin-right: 5px;
+}
+</style>
 <script setup>
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
+import { defineProps, ref, toRef } from 'vue'
+
+const props = defineProps({
+    myMessage: {
+        type: String,
+        default: () => ({})
+    }
+});
+const myMessage = toRef(props, 'myMessage')
+
+
+
+
+// const myStatus = ref();
+// selectedProduct.value = JSON.stringify(defineProps(['selectedProduct']));
+// const myStatus = JSON.stringify(selectedProduct.value)
+// console.log(selectedProduct.value)
+
 
 const confirm = useConfirm();
 const toast = useToast();

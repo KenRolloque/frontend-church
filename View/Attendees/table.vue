@@ -1,6 +1,7 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import dialogue from './dialogue.vue'
+import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
 
 var activeService = ref('all');
 var hideUpdate = ref(false);
@@ -43,6 +44,7 @@ const lifeStage = ref([
 
 const data = ref([
     {
+        'id': 1,
         'lname': 'Rolloque',
         'fname': 'Ken',
         'mname': 'L',
@@ -54,21 +56,190 @@ const data = ref([
         'school': 'Batangas State University',
         'schoolLevel': 'College',
         'serviceCommitment': '9am Service'
+    },
+    {
+        'id': 2,
+        'lname': 'Quinto',
+        'fname': 'Mark Gabriel',
+        'mname': 'L',
+        'facebook': 'Mark Gabriel Quinto',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': 'Dimayuga',
+        'fname': 'KC',
+        'mname': 'L',
+        'facebook': 'KC Dimayuga',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': 'Serdena',
+        'fname': 'Jan Marc',
+        'mname': 'L',
+        'facebook': 'Jan Marc Serdena',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': 'Monreal',
+        'fname': 'Jeriko',
+        'mname': 'L',
+        'facebook': 'Jeriko Monreal',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': '5',
+        'fname': 'Ken',
+        'mname': 'L',
+        'facebook': 'Ken Rolloque',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': 'Rolloque',
+        'fname': 'Ken',
+        'mname': 'L',
+        'facebook': 'Ken Rolloque',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+    {
+        'lname': 'Rolloque',
+        'fname': 'Ken',
+        'mname': 'L',
+        'facebook': 'Ken Rolloque',
+        'birthday': '01/14/2002 ',
+        'mobileNumber': '09481818278',
+        'lifeStage': 'Single',
+        'sectorOfSociety': 'Student',
+        'school': 'Batangas State University',
+        'schoolLevel': 'College',
+        'serviceCommitment': '9am Service'
+    },
+])
 
-    }
+
+//Column Header
+
+const columns = ref([
+    { header: 'Lastname', value: 'fname' },
+    { header: 'Firstname', value: 'lname' },
+    { header: 'Middle Initial', value: 'mname' },
+    { header: 'Facebook', value: 'facebook' },
+    { header: 'Birthday', value: 'birthday' },
+    { header: 'Mobile No.', value: 'mobileNumber' },
+    { header: 'Life Stage', value: 'lifeStage' },
+    { header: 'Sectory of Society', value: 'sectorOfSociety' },
+    { header: 'School', value: 'school' },
+    { header: 'School Level', value: 'schoolLevel' },
+    { header: 'Service Commitment', value: 'serviceCommitment' },
+
 ])
 
 var updateData = ref()
 
 
-function getData(myData) {
+function getData() {
     hideUpdate.value = true
-    updateData.value = myData
-
 }
 
 function changeData() {
     console.log(JSON.stringify(updateData.value));
+}
+
+// Search
+const filters = ref();
+
+const initFilters = () => {
+    filters.value = {
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        lname: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        fname: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        mname: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        facebook: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        birthday: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
+        mobileNumber: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        lifeStage: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        sectorOfSociety: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        school: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        schoolLevel: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        serviceCommitment: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+    }
+}
+
+initFilters();
+
+// Action
+
+var isSelected = ref(false);
+var selectedProduct = ref();
+const myFilter = computed(() => {
+    return selectedProduct.value == undefined ? 'yes' : 'no';
+})
+
+console.log(myFilter.value)
+
+
+function attendeeFilter() { }
+
+const items = [
+    {
+        label: 'All',
+        command: attendeeFilter(),
+    },
+    {
+        label: '9am Service',
+        command: attendeeFilter(),
+    },
+    {
+        label: '11am Service',
+        command: attendeeFilter(),
+    },
+    {
+        label: '3pm Service',
+        command: attendeeFilter(),
+    },
+    {
+        label: '5pm Service',
+        command: attendeeFilter(),
+    },
+
+];
+function deleteData() {
+    console.log(selectedProduct.value)
 }
 
 
@@ -78,53 +249,35 @@ function changeData() {
 
 <template>
 
-    <h1 id="statisticsTitle">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="size-">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-        </svg>
-        Attendees
-    </h1>
-
-    <div id="filterContainer" v-if="hideUpdate === false">
-        <ul>
-            <li :class="{ activeService: activeService === 'all' }" @click="changeService('all')">All</li>
-            <li :class="{ activeService: activeService === '9am' }" @click="changeService('9am')">9am</li>
-            <li :class="{ activeService: activeService === '11am' }" @click="changeService('11am')">11am</li>
-            <li :class="{ activeService: activeService === '3pm' }" @click="changeService('3pm')">3pm</li>
-            <li :class="{ activeService: activeService === '5pm' }" @click="changeService('5pm')">5pm</li>
-            <li :class="{ activeService: activeService === 'ys' }" @click="changeService('ys')">Youth Service</li>
-        </ul>
-    </div>
-
     <div class="tableContainer" v-if="hideUpdate === false">
 
-        <DataTable :value="data" showGridlines tableStyle="min-width: 50rem">
-            <Column :style="headerStyle" field="lname" header="Last Name"></Column>
-            <Column :style="headerStyle" field="fname" header="First Name"></Column>
-            <Column :style="headerStyle" field="mname" header="Middle Initial"></Column>
-            <Column :style="headerStyle" field="facebook" header="Facebook"></Column>
-            <Column :style="headerStyle" field="birthday" header="Birthday"></Column>
-            <Column :style="headerStyle" field="mobileNumber" header="Mobile No."></Column>
-            <Column :style="headerStyle" field="lifeStage" header="Life Stage"></Column>
-            <Column :style="headerStyle" field="sectorOfSociety" header="Sector of Society"></Column>
-            <Column :style="headerStyle" field="school" header="School"></Column>
-            <Column :style="headerStyle" field="schoolLevel" header="School Level"></Column>
-            <Column :style="headerStyle" field="serviceCommitment" header="Service Commitment"></Column>
-            <Column :style="headerStyle" header="Action">
-                <template #body>
-                    <div class="actionContainer">
+        <DataTable v-model:filters="filters" v-model:selection="selectedProduct" :value="data" :key="data" showGridlines
+            stripedRows paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem">
 
-                        <Button @click="getData(data)" size="small" icon="pi pi-pencil" severity="info" text rounded />
-                        <!-- <Button size="small" icon="pi pi-trash" severity="danger" text rounded /> -->
-                        <dialogue />
+            <template #header>
+                <div id="filterContainer" v-if="hideUpdate === false">
 
+                    <IconField class="searchContainer">
+                        <InputIcon class="pi pi-search" />
+                        <InputText class="searchInput" v-model="filters['global'].value" placeholder="Search" />
+                    </IconField>
 
-                    </div>
-                </template>
+                    <span id="actionContainer">
+                        <Button @click="getData()" :disabled="myFilter == 'yes'" id="editBttn" severity="secondary"
+                            icon="pi pi-pencil" label="Edit" text aria-label="Filter" />
+                        <!-- <Button :disabled="selectedProduct == undefined" id="delBttn" severity="secondary"
+                            icon="pi pi-trash" label="Delete" text aria-label="Filter" /> -->
+                        <dialogue :myMessage=myFilter />
+                        <SplitButton size="small" id="filterBttn" severity="secondary" label="Service" :model="items" />
+                    </span>
+                </div>
+
+            </template>
+            <Column :style="headerStyle" selectionMode="single"> </Column>
+            <Column :style="headerStyle" v-for="column in columns" :key="column.value" :header="column.header"
+                :field="column.value">
+
             </Column>
-
         </DataTable>
     </div>
 
@@ -132,67 +285,73 @@ function changeData() {
     <div class="editContainer" v-if="hideUpdate === true">
         <form action="">
             <span id="headerTitle">
-                <Button @click="hideUpdate = false" icon="pi pi-arrow-left" text raised rounded />
+
+                <h6>
+                    <Button @click="hideUpdate = false" icon="pi pi-arrow-left" text rounded />
+                    Back
+
+                </h6>
+
                 <h6>Update Data</h6>
             </span>
 
             <span class='inputContainer'>
                 <h6>Last Name</h6>
-                <InputText id="lastname" v-model="updateData[0].lname" type="text" placeholder="Last Name" />
+                <InputText id="lastname" v-model="selectedProduct.lname" type="text" placeholder="Last Name" />
             </span>
 
             <span class='inputContainer'>
                 <h6>First Name</h6>
-                <InputText v-model="updateData[0].fname" type="text" placeholder="First Name" />
+                <InputText v-model="selectedProduct.fname" type="text" placeholder="First Name" />
             </span>
 
             <span class='inputContainer'>
                 <h6>Middle Initial</h6>
-                <InputText v-model="updateData[0].mname" type="text" placeholder="Middle Initial" />
+                <InputText v-model="selectedProduct.mname" type="text" placeholder="Middle Initial" />
             </span>
 
             <span class='inputContainer'>
                 <h6>Facebook</h6>
-                <InputText v-model="updateData[0].facebook" type="text" placeholder="Facebook Account" />
+                <InputText v-model="selectedProduct.facebook" type="text" placeholder="Facebook Account" />
             </span>
 
             <span class='inputContainer'>
                 <h6>Birthday</h6>
-                <DatePicker v-model="updateData[0].birthday" showIcon iconDisplay="input"
+                <DatePicker v-model="selectedProduct.birthday" showIcon iconDisplay="input"
                     placeholder='Select Birthday' />
             </span>
 
             <span class='inputContainer'>
                 <h6>Mobile Number</h6>
-                <InputText v-model="updateData[0].mobileNumber" type="text" placeholder="Mobile Number" />
+                <InputText v-model="selectedProduct.mobileNumber" type="text" placeholder="Mobile Number" />
             </span>
 
 
             <span class='inputContainer'>
                 <h6>Life Stage</h6>
-                <Select v-model="updateData[0].lifeStage" :options="lifeStage" optionValue="label" optionLabel="label"
+                <Select v-model="selectedProduct.lifeStage" :options="lifeStage" optionValue="label" optionLabel="label"
                     placeholder="Life Stage" />
             </span>
 
             <span class='inputContainer'>
                 <h6>Sector of Society</h6>
-                <Select v-model="updateData[0].sectorOfSociety" :options="society" optionValue="label"
+                <Select v-model="selectedProduct.sectorOfSociety" :options="society" optionValue="label"
                     optionLabel="label" placeholder="Sector of Society" />
             </span>
 
             <span class='inputContainer'>
                 <h6>School</h6>
-                <InputText v-model="updateData[0].school" type="text" placeholder="School" />
+                <InputText v-model="selectedProduct.school" type="text" placeholder="School" />
             </span>
 
             <span class='inputContainer'>
                 <h6>School Level</h6>
-                <InputText v-model="updateData[0].schoolLevel" type="text" placeholder="School Level" />
+                <InputText v-model="selectedProduct.schoolLevel" type="text" placeholder="School Level" />
             </span>
 
             <span class='inputContainer'>
                 <h6>Service Commitment</h6>
-                <Select v-model="updateData[0].serviceCommitment" :options="service" optionValue="label"
+                <Select v-model="selectedProduct.serviceCommitment" :options="service" optionValue="label"
                     optionLabel="label" placeholder="Select service" />
             </span>
 
@@ -208,18 +367,25 @@ function changeData() {
 
 <style scoped>
 #statisticsTitle {
-    margin: 2em 0;
     font-family: Inter-SemiBold;
-    font-size: 18;
-
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1em;
     width: 100%;
-    background-color: var(--blue1);
-    color: white;
+    background-color: white;
 
-    padding: .5em;
+}
+
+#statisticsTitle>h6 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 1em;
+    padding: .5em 1em;
+    background-color: var(--gray1);
+    color: var(--gray3);
 }
 
 #statisticsTitle>svg {
@@ -229,9 +395,11 @@ function changeData() {
 /* Table Container */
 #filterContainer {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex: 1;
-    /* border: 1px solid red; */
+    /* padding: 0 2em;
+    margin-top: 1em; */
 }
 
 #filterContainer>ul {
@@ -250,11 +418,37 @@ function changeData() {
     border-radius: 3px;
 }
 
+/* Search Field */
+
+.searchContainer {
+    width: 30em;
+
+}
+
+.searchInput {
+    width: 100%;
+
+}
+
 .activeService {
     background-color: var(--purple);
     color: white;
 
 }
+
+#actionContainer {
+    display: flex;
+    gap: .5em
+}
+
+#editBttn {
+    font-size: 11px;
+}
+
+#delBttn {
+    font-size: 11px;
+}
+
 
 
 
@@ -266,6 +460,7 @@ function changeData() {
 
 .tableContainer {
     margin-top: 1em;
+    padding: 0 2em
 }
 
 .tableHeader {
@@ -279,32 +474,19 @@ function changeData() {
 
 }
 
-#delBttn,
-#editBttn {
-    width: 5em;
-    font-size: 12px;
-    font-family: Inter-Regular;
-}
-
-#delBttn {
-    color: red;
-}
-
-#editBttn {
-    color: blue;
-}
-
 .editContainer {
-    width: 100%;
-    justify-content: center;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em 0;
 }
 
 .editContainer>form {
-    width: 50%;
     display: flex;
-    gap: 1em;
     flex-direction: column;
+    gap: 1.3em;
+    width: 90%;
+    margin-top: 1em;
 }
 
 #headerTitle {
@@ -312,8 +494,21 @@ function changeData() {
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+
+    font-size: 14px;
     font-family: Inter-SemiBold;
-    color: var(--gray);
+    background-color: var(--gray4);
+}
+
+#headerTitle> :first-child {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+}
+
+#headerTitle> :nth-child(2) {
+    padding: 0 1em;
 }
 
 .inputContainer {

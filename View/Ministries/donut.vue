@@ -1,8 +1,20 @@
 <template>
-    <div class="card w-full">
-        <Chart type="bar" :data="chartData" :options="chartOptions" />
+    <div class="mySetup card w-full ">
+        <Chart type="bar" :data="chartData" :options="chartOptions" class="myChart" />
     </div>
 </template>
+<style scoped>
+.mySetup {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+}
+
+.myChart {
+    width: 80%;
+}
+</style>
 
 <script setup>
 import { ref, onMounted } from "vue";

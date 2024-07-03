@@ -14,7 +14,8 @@ export default{
     },
     data(){
         return{
-            route_path:'/dashboard'
+            route_path:'/dashboard',
+
         }
     },
     methods:{

@@ -11,12 +11,14 @@ import { ref } from "vue";
 <style scoped>
 @import url('../../style/Attendees/attendees.css');
 
-#statisticsTitle>svg {
+
+s #statisticsTitle>svg {
     width: 1.2em;
 }
 
 #lineGraph {
     display: flex;
+    justify-content: center;
     width: 100%;
     height: 30em;
 
@@ -32,6 +34,10 @@ import { ref } from "vue";
 
             <!-- Filter tab -->
             <span id="generalFilter">
+                <span>
+                    <i class="pi pi-database"></i>
+                    <h6>Attendees</h6>
+                </span>
                 <ul>
                     <li :class="{ activeGeneralFilter: isFilterActive === 1, notActiveFilter: isFilterActive != 1 }"
                         @click="changeFilter(1)">
@@ -52,19 +58,23 @@ import { ref } from "vue";
 
             <!-- Summary -->
             <div id="recordContainer" v-if="isFilterActive === 1">
-
                 <record />
-                <h1 id="statisticsTitle">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-                    </svg>
-                    History
-                </h1>
-                <h6>June, 2024 Overall Record from all Services</h6>
+            </div>
+
+            <div id="historyContainer" v-if="isFilterActive === 1">
+                <span id="statisticsTitle">
+                    <h6>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                        </svg>
+                        History
+                    </h6>
+                </span>
+                <h6 id="date">June, 2024 Overall Record from all Services</h6>
                 <span id="lineGraph">
                     <attendeeHistory />
                 </span>
@@ -72,6 +82,7 @@ import { ref } from "vue";
 
             <!-- Table -->
             <div id="dataContainer" v-if="isFilterActive === 2">
+
                 <myTable />
             </div>
 
@@ -91,76 +102,8 @@ export default {
     data() {
         return {
             isFilterActive: 1,
-            isCardActive: 1,
-            search: '',
-            headers: [
-                {
-                    align: 'start',
-                    key: 'lname',
-                    sortable: false,
-                    title: 'Last Name',
-                },
-                { key: 'fname', title: 'First Name' },
-                { key: 'mname', title: 'Middle Initial' },
-                { key: 'facebook', title: 'Facebook' },
-                { key: 'bday', title: 'Birthday' },
-                { key: 'mobileNo', title: 'Mobile Number' },
-                { key: 'lifeStage', title: 'Life Stage' },
-                { key: 'school', title: 'School' },
-                { key: 'schoolLevel', title: 'School Level' },
-                { key: 'serviceCommitment', title: 'Service Commitment' },
-            ],
-            data: [
-                {
-                    lname: 'Frozen Yogurt',
-                    fname: 'Frozen Yogurt',
-                    mname: 159,
-                    facebook: 6.0,
-                    bday: 24,
-                    mobileNo: 4.0,
-                    lifeStage: 1,
-                    school: 1,
-                    schoolLevel: 1,
-                    serviceCommitment: 1,
-                },
-                {
-                    lname: 'Frozen Yogurt',
-                    fname: 'Frozen Yogurt',
-                    mname: 159,
-                    facebook: 6.0,
-                    bday: 24,
-                    mobileNo: 4.0,
-                    lifeStage: 1,
-                    school: 1,
-                    schoolLevel: 1,
-                    serviceCommitment: 1,
-                },
-                {
-                    lname: 'Frozen Yogurt',
-                    fname: 'Frozen Yogurt',
-                    mname: 159,
-                    facebook: 6.0,
-                    bday: 24,
-                    mobileNo: 4.0,
-                    lifeStage: 1,
-                    school: 1,
-                    schoolLevel: 1,
-                    serviceCommitment: 1,
-                },
-                {
-                    lname: 'Frozen Yogurt',
-                    fname: 'Frozen Yogurt',
-                    mname: 159,
-                    facebook: 6.0,
-                    bday: 24,
-                    mobileNo: 4.0,
-                    lifeStage: 1,
-                    school: 1,
-                    schoolLevel: 1,
-                    serviceCommitment: 1,
-                },
+            isCardActive: 1
 
-            ],
         }
     },
     methods: {

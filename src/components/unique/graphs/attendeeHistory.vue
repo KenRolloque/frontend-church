@@ -6,8 +6,9 @@
 
 <style scoped>
 .card2 {
-    width: 100%;
+    width: 90%;
     display: flex;
+
 }
 
 #lineGraph {

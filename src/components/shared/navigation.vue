@@ -1,6 +1,6 @@
 <template>
 
-    <Menu class="myMenu w-full h-dvh px-4 bg-white">
+    <Menu class="myMenu w-full h-dvh px-4 ">
         <template #start>
             <span id="header">
                 <h6>Logo</h6>
@@ -86,6 +86,8 @@
 .myMenu {
     width: 100%;
     height: 1dvh;
+
+
 }
 
 

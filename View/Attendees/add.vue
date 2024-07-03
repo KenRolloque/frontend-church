@@ -18,14 +18,7 @@ const service = ref([
 
 <template>
 
-    <h1 id="statisticsTitle">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-        </svg>
-        Add Data
-    </h1>
+
 
     <div id="addFilter">
         <span>
@@ -77,18 +70,25 @@ const service = ref([
 
 <style scoped>
 #statisticsTitle {
-    margin: 2em 0;
     font-family: Inter-SemiBold;
-    font-size: 18;
-
     display: flex;
     align-items: center;
-    gap: 1em;
-    width: 100%;
-    background-color: var(--blue1);
-    color: white;
+    justify-content: center;
 
-    padding: .5em;
+    width: 100%;
+    background-color: white;
+
+}
+
+#statisticsTitle>h6 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 1em;
+    padding: .5em 1em;
+    background-color: var(--gray1);
+    color: var(--gray3);
 }
 
 #statisticsTitle>svg {
@@ -124,6 +124,13 @@ const service = ref([
     background-color: var(--blue1);
     color: white;
     height: 3em;
+}
+
+#addFilter {
+    display: flex;
+    margin-top: 1em;
+    gap: 1em;
+    padding: 1em 2em;
 }
 
 #addFilter> :first-child {

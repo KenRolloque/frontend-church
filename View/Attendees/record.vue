@@ -1,12 +1,14 @@
 <template>
-    <h1 id="statisticsTitle">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
-        </svg>
-        Record
-    </h1>
+    <span id="statisticsTitle">
+        <h6>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+            </svg>
+            All Service Record
+        </h6>
+    </span>
     <span id="data1">
 
         <!-- All -->
@@ -258,23 +260,37 @@
 <style scoped>
 /* Cards */
 #statisticsTitle {
-    margin: 2em 0;
+
     font-family: Inter-SemiBold;
-    font-size: 18;
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1em;
     width: 100%;
-    background-color: var(--blue1);
-    color: white;
+    background-color: white;
+    padding: 0 1.5em;
+    margin: 1em 0 1em 0;
 
-    padding: .5em;
 }
+
+#statisticsTitle>h6 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 1em;
+    padding: .5em 1em;
+    background-color: var(--gray1);
+    color: var(--gray3);
+}
+
+
 
 
 #data1 {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2em;
 
@@ -285,7 +301,7 @@
 }
 
 .card {
-    padding: .5em;
+    padding: .3em;
 }
 
 .cardTitle {

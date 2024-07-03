@@ -9,10 +9,15 @@
   --green1:#009E9D;
   --green2:#05A985;
   --gray: #363636;
+  --gray1:#F0EDFF;
   --gray2:#727272;
+  --gray4:#f2f2f2;
   --gray5:#f1f1f1;
 
 
+}
+body{
+  background-color: var(--gray4)
 }
 @tailwind base;
 @tailwind components;
