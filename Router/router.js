@@ -1,13 +1,13 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 import LoginView from '../View/login.view.vue'
 import DashboardView from '../View/Dashboard/dashboard.view.vue'
 import AttendeesView from '../View/Attendees/attendees.view.vue'
 import MinistriesView from '../View/Ministries/ministries.view.vue'
-import EventView from '../View/Dashboard/dashboard.view.vue'
+import EventView from '../View/Events/events.view.vue'
 import ClassesView from '../View/Classes/classes.view.vue'
 import StaffView from '../View/Staff/staff.view.vue'
-
+import {checkAuth} from '../src/auth.js'
 
 const routes = [
     {
@@ -18,12 +18,14 @@ const routes = [
     {
         path:'/dashboard', 
         name:'dashboard',
-        component:DashboardView
+        component:DashboardView,
+  
     },
     {
         path:'/attendees',
         name:'attendees',
-        component:AttendeesView
+        component:AttendeesView,
+
     },
     {
         path:'/ministries',
@@ -48,8 +50,10 @@ const routes = [
 ]
 
 const router = createRouter({
-    history:createMemoryHistory(),
+    history:createWebHistory(),
     routes,
+    linkActiveClass: 'border-indigo-500',
+    linkExactActiveClass: 'border-indigo-700',
 })
 
 export default router;

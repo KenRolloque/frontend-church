@@ -1,14 +1,17 @@
 <template>
 
-    <Menu class="myMenu w-full h-dvh px-4 ">
+    <Menu class="myMenu w-full h-dvh px-0 ">
         <template #start>
             <span id="header">
-                <h6>Logo</h6>
-                <h6>Church Community</h6>
-            </span>
+                <img id="profile-pic" src="../../assets/img/profile.jpg" alt="">
 
+                <h6 id="username">{{ userDetails.username }}
+                    <h6>{{ userDetails.fname }} {{ userDetails.mname }} {{ userDetails.lname }}</h6>
+                </h6>
+            </span>
+            <Divider />
             <ul id="itemList">
-                <li @click="changeRoute('/dashboard')">
+                <li @click="changeRoute('/dashboard')" :class="{ active: myActive === 'dashboard' }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -17,7 +20,7 @@
                     <h6>Dashboard</h6>
                 </li>
 
-                <li @click="changeRoute('/attendees')">
+                <li @click="changeRoute('/attendees')" :class="{ active: myActive === 'attendees' }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                         stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round"
@@ -26,7 +29,7 @@
                     <h6>Attendees</h6>
                 </li>
 
-                <li @click="changeRoute('/ministries')">
+                <li @click="changeRoute('/ministries')" :class="{ active: myActive === 'ministries' }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -37,7 +40,7 @@
 
                     <h6>Ministries</h6>
                 </li>
-                <li @click="changeRoute('/events')">
+                <li @click="changeRoute('/events')" :class="{ active: myActive === 'events' }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -46,7 +49,7 @@
 
                     <h6>Events</h6>
                 </li>
-                <li @click="changeRoute('/classes')">
+                <li @click="changeRoute('/classes')" :class="{ active: myActive === 'classes' }">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -55,8 +58,8 @@
 
                     <h6>Classes</h6>
                 </li>
-                <li @click="changeRoute('/staffs')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                <li @click="changeRoute('/staffs')" :class="{ active: myActive === 'staffs' }">
+                    <svg xmlns=" http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
@@ -78,12 +81,27 @@
 <style scoped>
 #header {
     display: flex;
+    align-items: center;
     gap: 1em;
     padding: 0 1em;
-    margin-top: 2em
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+
+}
+
+#username {
+    font-size: 14px;
+    font-family: Inter-SemiBold;
+}
+
+#username>h6 {
+    font-size: 10px;
+    font-family: Inter-SemiBold;
+    color: var(--gray2);
 }
 
 .myMenu {
+    display: flex;
     width: 100%;
     height: 1dvh;
 
@@ -94,6 +112,8 @@
 #itemList {
     display: flex;
     flex-direction: column;
+    padding: 0 1em;
+    margin-top: 1em;
 
 }
 
@@ -104,6 +124,7 @@
     padding: .5em 1em;
     gap: 2em;
     align-items: center;
+    border-radius: 3px;
 
 }
 
@@ -111,7 +132,13 @@
     width: 1.2em;
 }
 
-#itemList>li:hover {
+/* #itemList>li:hover {
+    background-color: var(--purple);
+    color: white;
+    border-radius: 3px;
+} */
+
+#active {
     background-color: var(--purple);
     color: white;
     border-radius: 3px;
@@ -145,5 +172,11 @@ ul {
 .navItem:hover {
 
     background-color: var(--blue1);
+}
+
+#profile-pic {
+    width: 2.5em;
+    height: auto;
+    border-radius: 50%;
 }
 </style>

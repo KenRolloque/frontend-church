@@ -25,14 +25,6 @@ const props = defineProps({
 const myMessage = toRef(props, 'myMessage')
 
 
-
-
-// const myStatus = ref();
-// selectedProduct.value = JSON.stringify(defineProps(['selectedProduct']));
-// const myStatus = JSON.stringify(selectedProduct.value)
-// console.log(selectedProduct.value)
-
-
 const confirm = useConfirm();
 const toast = useToast();
 const confirm2 = () => {

@@ -1,6 +1,7 @@
 <script setup>
+import MinistriesEditRecord from './MinistriesEditRecord.vue';
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const headerStyle = {
     fontSize: '13px',
@@ -38,22 +39,11 @@ const data = ref([
     },
 ])
 
-const editMinistry = ref()
-
-const statuses = ref([
-    {
-        name: "Member", key: "0"
-    }, {
-        name: "Not Member", key: "1"
-    }
-])
-
 
 const isShow = ref(false)
 const editData = ref();
 function showEditMinistry(status, data) {
     isShow.value = status
-    editMinistry.value = data
 
 }
 
@@ -142,6 +132,52 @@ const selectMinistry = ([
     { name: 'Creative Design', code: 'design' },
 ])
 
+const items = [
+    {
+        label: 'All',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Kids',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Prayer Team',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Ushering & Security ',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Communication',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Technical & Stage Management',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Admin',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Music Team',
+        command: attendeeFilter(),
+    },
+    {
+        label: 'Creative Design',
+        command: attendeeFilter(),
+    },
+
+];
+var selectedUser = ref();
+function attendeeFilter() { }
+
+const isDisabled = computed(() => {
+    return selectedUser.value == undefined ? true : false;
+})
+
 </script>
 
 <template>
@@ -156,25 +192,24 @@ const selectMinistry = ([
             All Service Record
         </h6>
     </span>
-    <DataTable v-model:filters="filters" :value="data" stripedRows paginator :rows="5"
+    <DataTable v-model:selection="selectedUser" v-model:filters="filters" :value="data" stripedRows paginator :rows="5"
         :rowPerPageOptions="[5, 10, 20, 30, 40, 50]" showGridlines tableStyle="min-width: 50rem" v-if="isShow == false">
 
         <template #header>
             <div class="header">
-                <span class="selectMinistryContainer">
-                    <h6 id='filterContainer'>
-                        <i class="pi pi-filter"></i>
-                        Filter
-                    </h6>
-                    <Select id="selectMinistry" v-model="selectedMinistry" optionValue='name' :options="selectMinistry"
-                        optionLabel='name' checkmark :highlightOnSelect="false" placeholder="Filter Ministry" />
-                </span>
+
                 <IconField class="searchContainer">
                     <InputIcon class="pi pi-search" />
                     <InputText v-model="filters['global'].value" class="searchInput" placeholder="Search" />
                 </IconField>
+                <span class="actionContainer">
+                    <Button :disabled="isDisabled" @click="showEditMinistry(true, data)" id="editBttn"
+                        severity="secondary" icon="pi pi-pencil" label="Edit" text aria-label="Filter" />
+                    <SplitButton size="small" severity="secondary" label="Ministry" :model="items" />
+                </span>
             </div>
         </template>
+        <Column selectionMode="single" headerStyle="width: 3rem"></Column>
         <Column v-for="column in columns" :key="column.field" :header="column.header" :style="headerStyle"
             :field="column.field">
 
@@ -191,15 +226,6 @@ const selectMinistry = ([
             </template>
         </Column>
 
-        <Column :style="headerStyle" header="Action">
-            <template #body>
-                <div class="labelContainer">
-                    <Button @click="showEditMinistry(true, data)" class="editBttn" size="small" label="Edit"
-                        icon="pi pi-pencil" severity="info" text />
-                </div>
-            </template>
-        </Column>
-
     </DataTable>
 
 
@@ -210,108 +236,8 @@ const selectMinistry = ([
             Back
         </h6>
 
-        <h6 id="itemName">Ken Mark Rolloque - 9am Service</h6>
+        <MinistriesEditRecord :data=selectedUser />
 
-
-        <!-- Kids Church -->
-        <div>
-            <h1 class='ministryTitle'>Kids Church</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].kidsChurch" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Prayer Team -->
-        <div>
-            <h1 class='ministryTitle'>Prayer Team</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].prayerTeam" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Ushering & Security-->
-        <div>
-            <h1 class='ministryTitle'>Ushering & Security</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].ushering" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Communications-->
-        <div>
-            <h1 class='ministryTitle'>Communications</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].communication" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Technical & Stage Management-->
-        <div>
-            <h1 class='ministryTitle'>Technical & Stage Management</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].technical" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Admin-->
-        <div>
-            <h1 class='ministryTitle'>Admin</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].admin" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Music-->
-        <div>
-            <h1 class='ministryTitle'>Music</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].music" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <!-- Creative Design-->
-        <div>
-            <h1 class='ministryTitle'>Creative Design</h1>
-            <div>
-                <span class="statusContainer" v-for="status in statuses">
-                    <RadioButton v-model="editMinistry[0].creativeDesign" :inputId="status.key" name="dynamic"
-                        :value="status.name" />
-                    <label :for="status.key" class="ml-2">{{ status.name }}</label>
-                </span>
-            </div>
-        </div>
-
-        <span id="editBttnContainer">
-            <Button type="button" size='small' label="Update" icon='pi pi-send' />
-        </span>
 
     </div>
 
@@ -343,7 +269,7 @@ const selectMinistry = ([
 }
 
 .searchContainer {
-    width: 20em;
+    width: 30em;
 
 }
 
@@ -374,20 +300,22 @@ const selectMinistry = ([
 
 
 
-.labelContainer {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
 
-
-}
 
 .tablecontent {
     display: flex;
     width: 100%;
     justify-content: center;
 
+}
+
+.actionContainer {
+    display: flex;
+    gap: .5em
+}
+
+#editBttn {
+    font-size: 11px;
 }
 
 .editBttn {
@@ -418,67 +346,5 @@ const selectMinistry = ([
     align-items: center;
     width: 100%;
 
-}
-
-.editContainer>div {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
-    padding: .8em 0;
-    border-bottom: 2px solid var(--gray5);
-    font-size: 13px;
-
-}
-
-.editContainer>div>div {
-    display: flex;
-    align-items: center;
-    gap: 3em;
-    font-size: 13px;
-
-}
-
-#itemName {
-    display: flex;
-    width: 97%;
-    margin: 1em 0 1em 0;
-    background-color: var(--purple);
-    color: white;
-    font-family: Inter-SemiBold;
-    font-size: 14px;
-    padding: .6em 1em;
-}
-
-
-.statusContainer> :nth-child(2) {
-    margin-right: 1em;
-    font-size: 12px;
-}
-
-
-.ministryTitle {
-    width: 30%;
-    font-family: Inter-SemiBold;
-    font-size: 13px;
-    color: var(--green1);
-}
-
-.card1 {
-    padding: 0 0 2em 0;
-}
-
-
-
-#editBttnContainer {
-    margin-top: 2em;
-    display: flex;
-    width: 95%;
-    justify-content: flex-end;
-
-}
-
-#editBttnContainer> :nth-child(1) {
-    background-color: var(--blue1);
-    color: white;
 }
 </style>

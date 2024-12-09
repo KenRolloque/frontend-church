@@ -4,8 +4,9 @@
 
 <script setup>
 import navigation from '../../src/components/shared/navigation.vue';
-import myTable from './table.vue';
-import myDonut from './donut.vue'
+import MinistriesTable from './components/MinistriesTable.vue';
+import MinistriesBarGraph from './components/MinistriesBarGraph.vue'
+import MinistriesMain from './components/MinistriesMain.vue'
 import { ref } from 'vue';
 
 var isFilterActive = ref(1);
@@ -20,7 +21,7 @@ function changeFilter(item) {
 <template>
     <main>
         <section id="drawerContainer">
-            <navigation />
+            <navigation status="ministries" />
         </section>
 
         <section id="contentContainer">
@@ -51,15 +52,13 @@ function changeFilter(item) {
 
             <!-- Summary -->
             <div id="summary" v-if="isFilterActive === 1">
-
-
                 <Card id="donutContainer">
                     <template #title>
                         <h6 id="graphTitle">Volunteers</h6>
                     </template>
                     <template #content>
                         <div class="w-full flex justify-center">
-                            <myDonut />
+                            <MinistriesBarGraph />
                         </div>
                     </template>
                 </Card>
@@ -68,7 +67,8 @@ function changeFilter(item) {
 
             <!-- Table -->
             <div id="tableContainer" v-if="isFilterActive === 2">
-                <myTable />
+                <MinistriesMain />
+                <!-- <MinistriesTable /> -->
             </div>
 
 

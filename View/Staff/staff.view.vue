@@ -9,7 +9,7 @@ import SideDrawer from '../../src/components/shared/navigation.vue';
 <template>
     <main>
         <section id="drawerContainer">
-            <SideDrawer />
+            <SideDrawer status='staffs' />
         </section>
         <section id="contentContainer">
             <p>Hello Staff</p>

@@ -32,11 +32,14 @@ main{
 .passwordCont  > :first-child
 {
     font-size: 13px;
-    color: var(--gray1);
+    color: var(--gray2);
     font-family: Inter-SemiBold;
+    margin-bottom: 5px;
 }
 
-
+.passwordCont{
+    margin-top: 1.5em;
+}
 
 #password{
     width: 100em;
@@ -47,6 +50,6 @@ main{
     background-color: var(--purple);
     color: white;
     width: 100%;
-    margin-top: 1em;
+    margin-top: 2em;
     /* height: 3.em; */
 }

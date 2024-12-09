@@ -1,6 +1,8 @@
 <script setup>
 import SideDrawer from '../../src/components/shared/navigation.vue';
-import myTable from './table.vue';
+import ClassesTable2 from './components/ClassesTable2.vue';
+import ClassesTable from './components/ClassesTable.vue';
+import ClassesMain from './components/ClassesMain.vue';
 import { ref } from 'vue';
 var isFilterActive = ref(1);
 
@@ -17,7 +19,7 @@ function changeFilter(item) {
 <template>
     <main>
         <section id="drawerContainer">
-            <SideDrawer />
+            <SideDrawer status='classes' />
         </section>
         <section id="contentContainer">
 
@@ -49,7 +51,7 @@ function changeFilter(item) {
             </div>
 
             <div id="dataContainer" v-if="isFilterActive == 2">
-                <myTable />
+                <ClassesMain />
             </div>
 
 
